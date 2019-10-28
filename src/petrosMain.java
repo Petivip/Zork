@@ -3,54 +3,48 @@ import java.util.Scanner;
 
 public class petrosMain {
     public static String userInput="";
-
-    public static void main(String args[]) {
+    public static int count=0;
+    public static void main(String[] args) {
 
         Scanner kd = new Scanner(System.in);
-        System.out.println("You are in room 1");
-        System.out.println("Do you want to go north or quit?");
-        String answer = kd.next();
-        if(answer.equalsIgnoreCase("north")){
-            userInput="front room";
-        } else if (answer.equalsIgnoreCase("quit")){
-            userInput="quit";
-        }
-        switch (userInput){
-            case "foyer":
-                foyer();
+        foyer();
+       while(!userInput.equalsIgnoreCase("word")) {
+           switch (userInput) {
+               case "foyer":
+                   foyer();
+                    break;
+               case "front room":
+                   frontRoom();
+                    break;
+               case "library":
+                   library();
+                    break;
+               case "kitchen":
+                   kitchen();
+                    break;
+               case "dining room":
+                   diningRoom();
+                    break;
+               case "vault":
+                   vaultRoom();
+                    break;
+               case "parlor":
+                   parlorRoom();
+                     break;
+               case "secret room":
+                   secretRoom();
+                      break;
+               case "quit":
+                   quit();
+                   break;
+           }
 
-            case "front room":
-                frontRoom();
-
-            case "library":
-                library();
-
-            case "kitchen":
-                kitchen();
-
-            case "dining room":
-                diningRoom();
-
-            case "vault":
-                vaultRoom();
-
-            case "parlor":
-                parlorRoom();
-
-            case "secret room":
-                secretRoom();
-
-            case "quit":
-                quit();
-
-        }
-
-
+       }
 
     }
     public static String foyer(){
         Scanner kd = new Scanner(System.in);
-
+        count+=1;
         System.out.println("You are in room 1");
         System.out.println("dead scorpion");
         System.out.println("Do you want to go north or quit?");
@@ -65,6 +59,7 @@ public class petrosMain {
 
     public static String frontRoom(){
         Scanner kd = new Scanner(System.in);
+        count+=1;
         System.out.println("You are in room 2");
         System.out.println("piano");
         System.out.println("Do you want to go south,west, east or quit?");
@@ -90,6 +85,7 @@ public class petrosMain {
 
     public static String library(){
         Scanner kd = new Scanner(System.in);
+        count+=1;
         System.out.println("You are in room 3");
         System.out.println("spiders");
         System.out.println("Do you want to go north, east or quit?");
@@ -112,6 +108,7 @@ public class petrosMain {
     }
     public static String kitchen(){
         Scanner kd = new Scanner(System.in);
+        count+=1;
         System.out.println("You are in room 4");
         System.out.println("bats");
         System.out.println("Do you want to go west, north or quit?");
@@ -134,6 +131,7 @@ public class petrosMain {
     }
     public static String diningRoom(){
         Scanner kd = new Scanner(System.in);
+        count+=1;
         System.out.println("You are in room 5");
         System.out.println("dust and empty box");
         System.out.println("Do you want to go south or quit?");
@@ -152,32 +150,52 @@ public class petrosMain {
         return userInput;
     }
 
-    public static String vaultRoom()
-    {
+    public static String vaultRoom() {
         Scanner kd = new Scanner(System.in);
+        count += 1;
+        boolean key = true;
 
         System.out.println("You are in room 6 - Vault");
         System.out.println("3 walking skeletons");
-        System.out.println("Do you want to go east");
-        String answer = kd.nextLine();
-        Random random = new Random();
-        int nextInt = random.nextInt(25);
-        if(answer.equalsIgnoreCase("east")) {
-            if (nextInt==0) {
-                  userInput="secret room";
-            }else{
-                userInput="palor";
+        if (key) {
+            System.out.println("Do you want to go east?");
+            String answer = kd.nextLine();
+            Random random = new Random();
+            int nextInt = random.nextInt(4);
+            if (answer.equalsIgnoreCase("east")) {
+
+                if (nextInt == 0) {
+                    userInput = "secret room";
+                    key = false;
+                } else {
+                    userInput = "parlor";
+                }
+
+            } else if (answer.equalsIgnoreCase("quit")) {
+                userInput = "quit";
             }
-        }else if(answer.equalsIgnoreCase("quit")){
-            userInput="quit";
+        } else {
+
+            System.out.println("Do you want to go to room 7 or 8?");
+            String answer = kd.nextLine();
+
+            if (answer.equalsIgnoreCase("eight")) {
+                userInput = "secret room";
+
+            } else if (answer.equalsIgnoreCase("seven")) {
+                userInput = "parlor";
+            } else {
+                userInput = "quit";
+
+            }
+
         }
         return userInput;
     }
-
     public static String parlorRoom()
     {
         Scanner kd = new Scanner(System.in);
-
+        count+=1;
         System.out.println("You are in room 7 - Parlor");
         System.out.println("Treasure chest");
         System.out.println("Do you want to go west, south, or quit?");
@@ -197,7 +215,7 @@ public class petrosMain {
     }
  public static String secretRoom() {
      Scanner kd = new Scanner(System.in);
-
+     count+=1;
      System.out.println("You are in room 8");
      System.out.println("pile if gold");
      System.out.println("Do you want to go west or quit?");
@@ -214,7 +232,14 @@ public class petrosMain {
      return userInput;
 }
 
-    public static void quit() {
-        System.out.println("time to exit");
+    public static String quit() {
+        Random random=new Random();
+        int nextInt = random.nextInt(4);
+        if (nextInt == 0) {
+            System.out.println("A ghost is following you");
+        }
+        System.out.println("You have visited :" + count);
+        userInput="word";
+        return userInput;
     }
 }
