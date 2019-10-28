@@ -42,9 +42,8 @@ public class Main {
 
     public static String frontRoom(){
         Scanner kd = new Scanner(System.in);
-
         System.out.println("You are in room 2");
-        System.out.println("paino");
+        System.out.println("piano");
         System.out.println("Do you want to go south,west, east or quit?");
         String answer= kd.next();
         switch (answer) {
@@ -65,6 +64,47 @@ public class Main {
 
         return userInput;
     }
+
+ /*   public static String vaultRoom()
+    {
+        Scanner kd = new Scanner(System.in);
+
+        System.out.println("You are in room 6 - Vault");
+        System.out.println("3 walking skeletons");
+        System.out.println("Do you want to go east");
+        String answer = kd.nextLine();
+
+    }
+    */
+
+ public static String parlorRoom()
+ {
+     Scanner kd = new Scanner(System.in);
+
+     System.out.println("You are in room 7 - Parlor");
+     System.out.println("Treasure chest");
+     System.out.println("Do you want to go west, south, or quit?");
+     String answer = kd.nextLine();
+     switch (answer) {
+         case "west":
+             userInput="vault";
+             break;
+         case "south":
+             userInput="kitchen";
+             break;
+         case "quit":
+             userInput="quit";
+             break;
+     }//end switch
+     return userInput;
+ }
+// public static String secretRoom()
+// {
+//     System.out.println("You are in room 8 - secret room");
+//     System.out.println("Piles of gold");
+//
+//
+// }
 
 
 }
