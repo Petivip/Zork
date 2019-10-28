@@ -4,6 +4,7 @@ import java.util.Scanner;
 public class petrosMain {
     public static String userInput="";
     public static int count=0;
+    public static boolean key=true;
     public static void main(String[] args) {
 
         Scanner kd = new Scanner(System.in);
@@ -153,7 +154,7 @@ public class petrosMain {
     public static String vaultRoom() {
         Scanner kd = new Scanner(System.in);
         count += 1;
-        boolean key = true;
+
 
         System.out.println("You are in room 6 - Vault");
         System.out.println("3 walking skeletons");
